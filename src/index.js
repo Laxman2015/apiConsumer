@@ -5,5 +5,5 @@ import App from './App';
 
 ReactDOM.render(
   <App country="India" />,
-  document.getElementById('app-without-cli')
+  document.getElementById('root')
 );  
