@@ -1,17 +1,45 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
+import axios from "axios";
+import TableHeader from "./components/TableHeader";
+import TableBody from "./components/TableBody";
+import bookListsApi from "./constants/index";
+import { useDispatch, useSelector } from "react-redux";
+import updateBooklist from "./actions/actions";
+import styles from "./App.module.scss";
 
-function App(props) {
+const App = () => {
+  const { bookLists } = useSelector(state => state);
+  console.log('bookLists', bookLists);
+  const dispatch = useDispatch();
+
+
+  const getBookList = (url) => {
+    axios.get(url).then((res) => {
+      dispatch(updateBooklist(res.data));
+    });
+  };
+
+  useEffect(() => {
+    getBookList(bookListsApi);
+  }, []);
+
+  if(bookLists.length <= 0){
+    return <div><strong>Loading...</strong></div>;
+  }
+  
   return (
-    <h1>
-      Welcome to React App
-      {props.country && (
-        <Fragment>
-          ,<span>{props.country}</span>
-        </Fragment>
-      )}{" "}
-      without React CLI.
-    </h1>
+    <div>
+      <h1 className={styles.title}>React Dynamic Table</h1>
+      <table className={styles.bookLists}>
+        <tbody>
+          <tr>
+            <TableHeader headerKey={bookLists[0]} />
+          </tr>
+          <TableBody data={bookLists} />
+        </tbody>
+      </table>
+    </div>
   );
-}
+};
 
 export default App;
