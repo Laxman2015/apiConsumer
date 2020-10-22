@@ -1,20 +1,29 @@
-import React from 'react';
-import { shallow } from 'enzyme';
+import React from "react";
+import { shallow } from "enzyme";
 
-import App from '../App';
+import App from "../App";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import reducers from "../reducers";
 
-describe('App Component', () => {
+const store = createStore(reducers);
 
-  it('renders App', () => {
+describe("App Component", () => {
+  it("renders App", () => {
     // Arrange.
-    const app = <App country="in" />;
+    const app = (
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
 
     // Act.
     const wrapper = shallow(app);
 
     // Assert.
-    expect(wrapper.find('h1')).toBeDefined();
-    expect(wrapper.find('h1 span').text()).toEqual('in');
+    expect(wrapper).toBeDefined();
+    expect(wrapper.find("h1")).toBeDefined();
+    expect(wrapper.find("TableHeader")).toBeDefined();
+    expect(wrapper.find("TableBody")).toBeDefined();
   });
-
 });
