@@ -1,0 +1,50 @@
+.cardText {
+    display: inline-grid;
+}
+.cardTextAlignCenter {
+    text-align: center;
+}
+.cardItem {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.imgWidth {
+    width: auto;
+    margin-right: 24px;
+}
+
+.title {
+    text-align: center;
+    font-family: arial, sans-serif;
+  }
+.cartItem {
+    display: flex;
+    align-items: center;
+    background: #f1eded;
+    border: 1px solid darkgray;
+    margin: 0 auto;
+    padding: 0 16px;
+    width: 60%;
+    height: 300px;
+}
+.cardContainer {
+    width: 60%;
+}
+
+.bookImage {
+    margin: "0 auto";
+    max-height: "300px";
+}
+.backToHome {
+    display: flex;
+    align-items: flex-end;
+    margin: 0 auto;
+    padding: 0 16px;
+    width: 60%;
+    justify-content: flex-end;
+}
+.btnPrimary:hover{border-color:#33b1b7; margin: 10px;padding: 5px;width: 150px;}
+.btnPrimary{color:#fff;background-color:#007bff;border-color:#007bff; margin: 10px;padding: 5px;width: 150px;}
+
