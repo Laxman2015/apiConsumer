@@ -11,7 +11,7 @@ const ViewDetails = (props) => {
 
   const history = useHistory();
 
-  const backToHome = () => history.push('/');
+  const backToHome = () => history.push("/");
 
   const starRender = (num) => {
     let rating = [];
@@ -20,28 +20,45 @@ const ViewDetails = (props) => {
     }
     return rating;
   };
+  if (!product) {
+    backToHome();
+  }
+
   return (
     <Fragment>
-        <h1 className={styles.title}>Book Details</h1>
-      <div className={styles.cartItem}>
-        <div className={styles.imgWidth}>
-          <img
-            alt={product.name}
-            className={styles.bookImage}
-            src={product.url}
-            className="img-fluid d-block"
-          />
+      {bookLists && product ? (
+        <Fragment>
+          <h1 className={styles.title}>Book Details</h1>
+          <div className={styles.cartItem}>
+            <div className={styles.imgWidth}>
+              <img
+                alt={product.name}
+                className={styles.bookImage}
+                src={product.url}
+                className="img-fluid d-block"
+              />
+            </div>
+            <div className={styles.prodInfo}>
+              <h3 className="mb-1">BookID: {product.id}</h3>
+              <h3 className="mb-1">Name: {product.name}</h3>
+              <h4 className="mb-1">Raiting: {starRender(product.star)}</h4>
+              <h4 className="mb-1">Price: {product.price} </h4>
+            </div>
+          </div>
+          <div className={styles.backToHome}>
+            <button className={styles.btnPrimary} onClick={() => backToHome()}>
+              Back To Home
+            </button>
+          </div>
+        </Fragment>
+      ) : (
+        <div className={styles.cartItem}>
+          <p>Please Don't Refresh</p>
+          <button className={styles.btnPrimary} onClick={() => backToHome()}>
+            Back To Home
+          </button>
         </div>
-        <div className={styles.prodInfo}>
-          <h3 className="mb-1">BookID: {product.id}</h3>
-          <h3 className="mb-1">Name: {product.name}</h3>
-          <h4 className="mb-1">Raiting: {starRender(product.star)}</h4>
-          <h4 className="mb-1">Price: {product.price} </h4>
-        </div>
-      </div>
-      <div className={styles.backToHome}>
-        <button className={styles.btnPrimary} onClick={() => backToHome()}>Back To Home</button>
-      </div>
+      )}
     </Fragment>
   );
 };
