@@ -8,7 +8,9 @@
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
     "lint": "eslint src/**/*.js",
-    "test": "jest --silent"
+    "test": "jest --silent",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,7 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
+    "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.8.0",
     "jest-dom": "^3.5.0",
@@ -76,5 +79,4 @@
       "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
     }
   }
-  
 }
